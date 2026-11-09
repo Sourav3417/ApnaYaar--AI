@@ -1,0 +1,7 @@
+# ApnaYaar AI - Dependencies
+# To install, run: pip install -r requirements.txt
+
+streamlit>=1.30.0
+python-dotenv>=1.0.0
+google-genai>=2.0.0
+requests>=2.28.0

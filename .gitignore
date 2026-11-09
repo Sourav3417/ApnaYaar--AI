@@ -1,0 +1,22 @@
+# Environment variables and secrets (Crucial: never commit real keys)
+.env
+.env.local
+.env.*.local
+
+# Streamlit secrets (alternative secret storage)
+.streamlit/secrets.toml
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folders
+venv/
+env/
+.venv/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini

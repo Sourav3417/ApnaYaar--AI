@@ -1,0 +1,806 @@
+/* ==============================================================================
+   ApnaYaar AI - Professional Desktop-First Theme (companion.css)
+   Cosmic Dark Navy / Electric Violet / Neon Cyan Accent System
+   ============================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Base & Background Container */
+.stApp {
+    background-color: #070913 !important;
+    background-image: 
+        radial-gradient(circle at 50% 12%, rgba(56, 26, 110, 0.42) 0%, transparent 60%),
+        radial-gradient(circle at 10% 85%, rgba(14, 55, 105, 0.28) 0%, transparent 50%),
+        radial-gradient(circle at 90% 85%, rgba(88, 28, 135, 0.32) 0%, transparent 55%),
+        linear-gradient(180deg, #070913 0%, #090E1F 50%, #05070E 100%) !important;
+    background-attachment: fixed !important;
+    color: #F1F5F9 !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Protect Streamlit's Material Symbols icon font from being overridden.
+   These spans use font-ligatures to render icons like the sidebar arrows. */
+[data-testid="stSidebarCollapsedControl"] span,
+[data-testid="collapsedControl"] span,
+[data-testid="stSidebar"] button[kind="header"] span,
+span.material-symbols-rounded,
+span[class*="material-symbols"],
+[data-testid="stSidebarCollapseButton"] span,
+[data-testid="stSidebarNavCollapseButton"] span,
+[data-testid="stHeader"] span {
+    font-family: 'Material Symbols Rounded', sans-serif !important;
+    -webkit-font-feature-settings: 'liga' 1 !important;
+    font-feature-settings: 'liga' 1 !important;
+}
+
+/* Desktop-First Container Sizing: Spacious on Laptop/Desktop, perfectly fitted */
+.main .block-container,
+[data-testid="stMainBlockContainer"] {
+    max-width: 1060px !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    margin: 0 auto !important;
+}
+
+/* Clean Header bar */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #090D1C !important;
+    border-right: 1px solid rgba(139, 92, 246, 0.18) !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    color: #E2E8F0 !important;
+}
+
+/* Ensure sidebar collapse/expand icon renders as a Material Symbol, not raw text */
+[data-testid="stSidebar"] button[kind="header"],
+[data-testid="stSidebar"] button[kind="header"] span,
+[data-testid="stSidebarCollapsedControl"] button,
+[data-testid="stSidebarCollapsedControl"] button span,
+[data-testid="collapsedControl"] button,
+[data-testid="collapsedControl"] button span {
+    font-family: 'Material Symbols Rounded', sans-serif !important;
+    -webkit-font-feature-settings: 'liga' 1 !important;
+    font-feature-settings: 'liga' 1 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ==============================================================================
+   APP HEADER
+   ============================================================================== */
+.ay-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 4px 14px 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.18);
+}
+
+.ay-logo-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ay-logo-icon {
+    width: 42px;
+    height: 42px;
+    filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.7));
+}
+
+.ay-logo-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.ay-logo-title span {
+    background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ay-logo-subtitle {
+    font-size: 0.88rem;
+    color: #CBD5E1;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ay-logo-subtitle::after {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: linear-gradient(90deg, #818CF8, transparent);
+    border-radius: 2px;
+}
+
+.ay-online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.18);
+}
+
+.ay-online-dot {
+    width: 9px;
+    height: 9px;
+    background-color: #10B981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10B981, 0 0 18px #10B981;
+    animation: ay-dot-pulse 2s infinite ease-in-out;
+}
+
+@keyframes ay-dot-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ==============================================================================
+   CELESTIAL ORB STYLES & ANIMATIONS
+   ============================================================================== */
+.ay-orb-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 4px 0 6px 0;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.ay-orb-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px auto;
+}
+
+/* Ambient glow beneath orb */
+.ay-orb-glow {
+    position: absolute;
+    width: 195px;
+    height: 195px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(147, 51, 234, 0.38) 50%, transparent 75%);
+    filter: blur(24px);
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+/* The Glowing Planet Sphere */
+.ay-orb-sphere {
+    position: absolute;
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #67E8F9 0%, #38BDF8 25%, #6366F1 55%, #3B0764 88%, #1E1B4B 100%);
+    box-shadow: 
+        inset 0 0 26px rgba(255, 255, 255, 0.75),
+        inset -10px -10px 26px rgba(15, 23, 42, 0.9),
+        0 0 35px rgba(56, 189, 248, 0.65),
+        0 0 65px rgba(168, 85, 247, 0.5);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all 0.5s ease;
+}
+
+/* Cute Face SVG inside the orb */
+.ay-orb-face {
+    width: 95px;
+    height: 56px;
+    z-index: 4;
+    transition: transform 0.3s ease;
+}
+
+/* Tilted Planetary Ring */
+.ay-orb-ring-svg {
+    position: absolute;
+    width: 250px;
+    height: 130px;
+    z-index: 5;
+    pointer-events: none;
+    transform: rotate(-16deg);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ground Pedestal / Concentric Glowing Rings */
+.ay-pedestal {
+    position: absolute;
+    bottom: 6px;
+    width: 180px;
+    height: 32px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.38) 0%, rgba(168, 85, 247, 0.22) 50%, transparent 75%);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    z-index: 1;
+}
+
+.ay-pedestal-inner {
+    position: absolute;
+    bottom: 11px;
+    width: 118px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(192, 132, 252, 0.45);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.55);
+    z-index: 1;
+}
+
+/* ==============================================================================
+   STATE-SPECIFIC ANIMATIONS (idle, listening, thinking, speaking)
+   ============================================================================== */
+
+/* IDLE: Gentle floating and breathing */
+.state-idle .ay-orb-sphere {
+    animation: ay-float 4.2s infinite ease-in-out;
+}
+.state-idle .ay-orb-glow {
+    animation: ay-pulse 4.2s infinite ease-in-out;
+}
+.state-idle .ay-orb-ring-svg {
+    animation: ay-ring-float 4.2s infinite ease-in-out;
+}
+
+/* LISTENING: Attentive, rhythmic pulse, cyan aura */
+.state-listening .ay-orb-sphere {
+    background: radial-gradient(circle at 35% 30%, #A5F3FC 0%, #38BDF8 30%, #3B82F6 60%, #1E1B4B 100%);
+    box-shadow: 
+        inset 0 0 30px rgba(255, 255, 255, 0.85),
+        0 0 50px rgba(56, 189, 248, 0.85),
+        0 0 90px rgba(56, 189, 248, 0.5);
+    animation: ay-listening-pulse 1.6s infinite ease-in-out;
+}
+.state-listening .ay-orb-glow {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.8) 0%, rgba(59, 130, 246, 0.45) 50%, transparent 80%);
+    transform: scale(1.15);
+    animation: ay-listening-glow 1.6s infinite ease-in-out;
+}
+.state-listening .ay-pedestal {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.75);
+}
+
+/* THINKING: Contemplating, rotating energy, purple focus */
+.state-thinking .ay-orb-sphere {
+    background: radial-gradient(circle at 35% 30%, #F5D0FE 0%, #C084FC 30%, #7E22CE 65%, #1E1B4B 100%);
+    box-shadow: 
+        inset 0 0 32px rgba(255, 255, 255, 0.8),
+        0 0 45px rgba(192, 132, 252, 0.85),
+        0 0 85px rgba(147, 51, 234, 0.55);
+    animation: ay-thinking-bob 2.4s infinite ease-in-out;
+}
+.state-thinking .ay-orb-glow {
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.7) 0%, rgba(126, 34, 206, 0.5) 50%, transparent 80%);
+    animation: ay-thinking-glow 2.4s infinite ease-in-out;
+}
+.state-thinking .ay-orb-ring-svg {
+    animation: ay-ring-spin 6s infinite linear;
+}
+
+/* SPEAKING: Vibrant, bouncy, energetic speech cadence */
+.state-speaking .ay-orb-sphere {
+    background: radial-gradient(circle at 35% 30%, #BAE6FD 0%, #38BDF8 25%, #8B5CF6 60%, #4C1D95 100%);
+    box-shadow: 
+        inset 0 0 35px rgba(255, 255, 255, 0.95),
+        0 0 55px rgba(56, 189, 248, 0.95),
+        0 0 100px rgba(168, 85, 247, 0.75);
+    animation: ay-speaking-bounce 0.95s infinite ease-in-out;
+}
+.state-speaking .ay-orb-glow {
+    animation: ay-speaking-glow 0.95s infinite ease-in-out;
+}
+.state-speaking .ay-orb-ring-svg {
+    animation: ay-ring-wobble 1.9s infinite ease-in-out;
+}
+
+/* Keyframes */
+@keyframes ay-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes ay-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 0.95; }
+}
+
+@keyframes ay-ring-float {
+    0%, 100% { transform: rotate(-16deg) translateY(0px); }
+    50% { transform: rotate(-16deg) translateY(-6px); }
+}
+
+@keyframes ay-listening-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes ay-listening-glow {
+    0%, 100% { transform: scale(1.05); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes ay-thinking-bob {
+    0%, 100% { transform: scale(0.98) translateY(0); }
+    50% { transform: scale(1.02) translateY(-5px); }
+}
+
+@keyframes ay-thinking-glow {
+    0%, 100% { opacity: 0.6; transform: scale(0.95); }
+    50% { opacity: 0.95; transform: scale(1.15); }
+}
+
+@keyframes ay-ring-spin {
+    0% { transform: rotate(-16deg) scale(1); }
+    50% { transform: rotate(14deg) scale(1.04); }
+    100% { transform: rotate(-16deg) scale(1); }
+}
+
+@keyframes ay-speaking-bounce {
+    0%, 100% { transform: scale(1) translateY(0); }
+    25% { transform: scale(1.04) translateY(-6px); }
+    60% { transform: scale(0.98) translateY(2px); }
+    80% { transform: scale(1.02) translateY(-3px); }
+}
+
+@keyframes ay-speaking-glow {
+    0%, 100% { transform: scale(1.05); opacity: 0.7; }
+    50% { transform: scale(1.25); opacity: 1; }
+}
+
+@keyframes ay-ring-wobble {
+    0%, 100% { transform: rotate(-16deg) scale(1); }
+    50% { transform: rotate(-12deg) scale(1.06); }
+}
+
+/* ==============================================================================
+   STATE CALLOUT / ACTION TEXT
+   ============================================================================== */
+.ay-state-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 4px 0 10px 0;
+}
+
+.ay-state-headline {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+}
+
+.ay-state-subline {
+    font-size: 0.92rem;
+    color: #CBD5E1;
+    font-weight: 600;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ay-state-subline::before,
+.ay-state-subline::after {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: rgba(203, 213, 225, 0.4);
+}
+
+/* ==============================================================================
+   CONTROL HUB & PANEL CARDS (Desktop Right Panel)
+   ============================================================================== */
+.ay-panel-card {
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    border-radius: 20px;
+    padding: 14px 18px 14px 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+}
+
+.ay-panel-card:hover {
+    border-color: rgba(168, 85, 247, 0.45);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45), 0 0 18px rgba(168, 85, 247, 0.12);
+}
+
+.ay-panel-header {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #C084FC;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+/* ==============================================================================
+   ATTRACTIVE MODERN BUTTONS (Universal & State-Specific Rules)
+   Eliminates all white backgrounds and ensures high-contrast bold typography
+   ============================================================================== */
+
+/* 1. UNIVERSAL BUTTON BASE: Applies to Streamlit content buttons (not header/icon buttons) */
+[data-testid="stButton"] button,
+div.stButton button,
+.stButton > button,
+[data-testid="stBaseButton-primary"],
+[data-testid="stBaseButton-secondary"] {
+    background: linear-gradient(135deg, rgba(20, 28, 48, 0.95) 0%, rgba(30, 41, 65, 0.92) 100%) !important;
+    border: 1px solid rgba(139, 92, 246, 0.35) !important;
+    border-radius: 16px !important;
+    color: #FFFFFF !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+    white-space: pre-line !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    outline: none !important;
+}
+
+/* Force all child text inside Streamlit content buttons to be bright & high-contrast */
+[data-testid="stButton"] button p,
+[data-testid="stButton"] button span,
+div.stButton button p,
+.stButton > button p {
+    color: #FFFFFF !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+}
+
+/* 2. ACTIVE MODE BUTTON (Streamlit type="primary") */
+button[kind="primary"],
+[data-testid="stBaseButton-primary"],
+button[data-testid="baseButton-primary"] {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.96) 0%, rgba(88, 28, 135, 0.96) 100%) !important;
+    border: 2px solid #38BDF8 !important;
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.6), inset 0 0 14px rgba(56, 189, 248, 0.3) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important;
+}
+
+button[kind="primary"] p,
+[data-testid="stBaseButton-primary"] p,
+button[data-testid="baseButton-primary"] p {
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.7) !important;
+}
+
+button[kind="primary"]:hover,
+[data-testid="stBaseButton-primary"]:hover {
+    box-shadow: 0 0 32px rgba(56, 189, 248, 0.8), inset 0 0 18px rgba(56, 189, 248, 0.4) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* 3. INACTIVE MODE BUTTONS (Streamlit type="secondary") */
+button[kind="secondary"],
+[data-testid="stBaseButton-secondary"],
+button[data-testid="baseButton-secondary"] {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(26, 36, 60, 0.9) 100%) !important;
+    border: 1px solid rgba(139, 92, 246, 0.32) !important;
+    color: #F1F5F9 !important;
+}
+
+button[kind="secondary"] p,
+[data-testid="stBaseButton-secondary"] p,
+button[data-testid="baseButton-secondary"] p {
+    color: #E2E8F0 !important;
+    font-weight: 700 !important;
+}
+
+button[kind="secondary"]:hover,
+[data-testid="stBaseButton-secondary"]:hover {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.92) 100%) !important;
+    border-color: #A855F7 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 6px 22px rgba(168, 85, 247, 0.45) !important;
+    transform: translateY(-2px) !important;
+}
+
+button[kind="secondary"]:hover p,
+[data-testid="stBaseButton-secondary"]:hover p {
+    color: #FFFFFF !important;
+}
+
+/* Pressed States */
+button:active,
+[data-testid*="stBaseButton"]:active {
+    transform: translateY(0px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 4. STOP SPEAKING ACTION BUTTON */
+button[aria-label*="Stop current voice playback"],
+button[aria-label*="Stop Speaking"],
+[data-testid="stButton"]:has(button[aria-label*="Stop"]) button,
+button:has(p:contains("Stop Speaking")) {
+    background: linear-gradient(135deg, #F43F5E 0%, #BE123C 100%) !important;
+    border: 1px solid #FDA4AF !important;
+    border-radius: 14px !important;
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+    font-size: 0.92rem !important;
+    box-shadow: 0 0 22px rgba(244, 63, 94, 0.55) !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    transition: all 0.25s ease !important;
+}
+
+button[aria-label*="Stop current voice playback"]:hover,
+button[aria-label*="Stop Speaking"]:hover {
+    box-shadow: 0 0 32px rgba(244, 63, 94, 0.85) !important;
+    transform: translateY(-2px) !important;
+}
+
+button[aria-label*="Stop current voice playback"] p,
+button[aria-label*="Stop Speaking"] p {
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+}
+
+/* Disabled Stop Speaking: muted appearance when no audio is playing */
+button[aria-label*="Stop current voice playback"]:disabled,
+button[aria-label*="Stop Speaking"]:disabled {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border: 1px solid rgba(100, 116, 139, 0.35) !important;
+    box-shadow: none !important;
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+button[aria-label*="Stop current voice playback"]:disabled p,
+button[aria-label*="Stop Speaking"]:disabled p {
+    color: #94A3B8 !important;
+    text-shadow: none !important;
+}
+
+/* 5. END CONVERSATION BUTTON */
+button[aria-label*="End conversation"],
+button[key="end_conversation_btn"],
+div:has(> button[key="end_conversation_btn"]) button {
+    background: rgba(30, 41, 59, 0.75) !important;
+    border: 1px solid rgba(244, 63, 94, 0.45) !important;
+    color: #FECDD3 !important;
+    border-radius: 14px !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    transition: all 0.25s ease !important;
+}
+
+button[aria-label*="End conversation"]:hover,
+button[key="end_conversation_btn"]:hover,
+div:has(> button[key="end_conversation_btn"]) button:hover {
+    background: rgba(225, 29, 72, 0.35) !important;
+    border-color: #FB7185 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 20px rgba(225, 29, 72, 0.5) !important;
+    transform: translateY(-1px) !important;
+}
+
+button[aria-label*="End conversation"] p,
+button[key="end_conversation_btn"] p {
+    color: #FECDD3 !important;
+    font-weight: 700 !important;
+}
+
+button[aria-label*="End conversation"]:hover p,
+button[key="end_conversation_btn"]:hover p {
+    color: #FFFFFF !important;
+}
+
+/* ==============================================================================
+   MICROPHONE & AUDIO INPUT CONTRAST POLISH
+   ============================================================================== */
+[data-testid="stAudioInput"] {
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 1px solid rgba(139, 92, 246, 0.4) !important;
+    border-radius: 18px !important;
+    padding: 10px 16px !important;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.4) !important;
+    margin-bottom: 8px !important;
+    color: #F8FAFC !important;
+}
+
+[data-testid="stAudioInput"]:hover {
+    border-color: rgba(56, 189, 248, 0.7) !important;
+    box-shadow: 0 4px 26px rgba(56, 189, 248, 0.3) !important;
+}
+
+/* High-contrast bold text for all audio input labels, timers & statuses */
+[data-testid="stAudioInput"] label,
+[data-testid="stAudioInput"] p,
+[data-testid="stAudioInput"] div,
+[data-testid="stAudioInput"] [data-testid="stMarkdownContainer"] p {
+    color: #F8FAFC !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+}
+
+/* Microphone round record button */
+[data-testid="stAudioInput"] button {
+    border-radius: 50% !important;
+    border: 1px solid rgba(56, 189, 248, 0.6) !important;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.4) !important;
+}
+
+[data-testid="stAudioInput"] button:hover {
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.8) !important;
+}
+
+/* Waveform canvas visibility */
+[data-testid="stAudioInput"] canvas {
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
+}
+
+/* ==============================================================================
+   SLIDER TYPOGRAPHY & CONTRAST
+   ============================================================================== */
+div[data-testid="stSlider"] {
+    padding-top: 4px !important;
+}
+
+div[data-testid="stSlider"] label {
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    font-size: 0.92rem !important;
+}
+
+/* Slider value bubble / text */
+div[data-testid="stSlider"] [data-testid="stThumbValue"],
+div[data-testid="stSlider"] div[role="slider"] {
+    background-color: #38BDF8 !important;
+    color: #070913 !important;
+    font-weight: 800 !important;
+}
+
+/* ==============================================================================
+   FOOTER TRUST BADGES & WHISPER
+   ============================================================================== */
+.ay-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0 2px 0;
+}
+
+.ay-badges-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.ay-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #CBD5E1;
+    font-weight: 600;
+}
+
+.ay-badge-divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(148, 163, 184, 0.3);
+}
+
+.ay-whisper-tagline {
+    font-size: 0.86rem;
+    font-style: italic;
+    color: #C084FC;
+    margin-top: 2px;
+    text-shadow: 0 0 14px rgba(192, 132, 252, 0.45);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==============================================================================
+   ANTI-CODEBOX & TRANSPARENCY OVERRIDES
+   ============================================================================== */
+[data-testid="stHtml"],
+.stHtml,
+.ay-orb-stage,
+.ay-orb-wrapper,
+.ay-orb-sphere {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+}
+
+[data-testid="stHtml"] pre,
+[data-testid="stHtml"] code,
+.ay-orb-stage pre,
+.ay-orb-stage code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: inherit !important;
+    box-shadow: none !important;
+}
+
+/* ==============================================================================
+   RESPONSIVENESS (Desktop vs Laptop vs Mobile)
+   ============================================================================== */
+@media (max-width: 768px) {
+    .main .block-container,
+    [data-testid="stMainBlockContainer"] {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .ay-orb-wrapper {
+        width: 190px;
+        height: 190px;
+    }
+    .ay-orb-sphere {
+        width: 130px;
+        height: 130px;
+    }
+    .ay-orb-ring-svg {
+        width: 220px;
+        height: 110px;
+    }
+    .ay-state-headline {
+        font-size: 1.35rem;
+    }
+    .ay-badges-row {
+        gap: 12px;
+    }
+    .ay-badge-divider {
+        display: none;
+    }
+}
